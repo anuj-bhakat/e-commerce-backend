@@ -6,9 +6,14 @@ const cors=requre('cors');
 dotenv.config();
 
 
+
+const { MongoClient } = require('mongodb');
+const uri=process.env.MONGODB_URI;
+const client = new MongoClient(uri);
+
+
 const {buyProduct}=require('./controllers/buyProduct');
 
-const mongoose=require('mongoose');
 const cors=require('cors');
 
 app.use(cors());
