@@ -1,8 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const buyProductController = require('../controllers/buyProductController');
+import express from "express"; 
+import { addProduct, listProducts } from "../controllers/productController.js"; 
+import { productValidator } from "../validators/productValidator.js"; 
+import { validationResult } from "express-validator"; 
 
-// Route: POST /buy/:productId
-router.post('/buy/:productId', buyProductController.buyProduct);
+const router = express.Router(); 
 
-module.exports = router;
+router.post("/", productValidator, (req, res, next) => { 
+const errors = validationResult(req); 
+if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() }); 
+next(); 
+}, addProduct); 
+
+router.get("/", listProducts);
+ 
+export default router;
