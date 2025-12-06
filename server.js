@@ -14,14 +14,7 @@ app.use(express.json());
 
 app.use("/api/users",userRoutes);
 app.use("/api/products",productRoutes);
-app.use("/api/orders",orderRoutes);
-
-//Atlas Server
-// mongoose.connect(process.env.MONGODB_URI).then(()=>{
-//     console.log("MongoDB Connected");
-//     app.listen(5000,()=>console.log("Server running on port 5000"));
-// }).catch(err=>console.log(err));
-
+app.use("/api/orders",orderRoutes)
 
 //Local Server
 mongoose.connect(process.env.MONGODB_URI_LOCAL).then(()=>{
